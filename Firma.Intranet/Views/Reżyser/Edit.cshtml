@@ -1,0 +1,56 @@
+﻿@model Firma.Data.Data.Movie.Reżyser
+
+@{
+    ViewData["Title"] = "Edycja Danych Reżysera";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0"><i class="fa-solid fa-user-pen me-2"></i>@ViewData["Title"]</h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger"></div>
+                    <input type="hidden" asp-for="IdReżyser" />
+
+                    <div class="mb-3">
+                        <label asp-for="Imie" class="form-label fw-bold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <input asp-for="Imie" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Imie" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Nazwisko" class="form-label fw-bold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <input asp-for="Nazwisko" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Nazwisko" class="text-danger small"></span>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group d-flex justify-content-between align-items-center mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left me-2"></i>Anuluj i wróć
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-save me-2"></i>Zapisz zmiany
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

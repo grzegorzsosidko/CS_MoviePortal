@@ -1,0 +1,89 @@
+﻿@model Firma.Intranet.Models.ViewModels.FilmViewModel
+
+@{
+    ViewData["Title"] = "Dodaj Nowy Film";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0"><i class="fa-solid fa-plus-square me-2"></i>@ViewData["Title"]</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger"></div>
+
+                    <!-- Usunięto skomplikowany układ i uproszczono formularz -->
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-bold"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Wprowadź tytuł filmu" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-bold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Dodaj krótki opis fabuły..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="ReleaseYear" class="form-label fw-bold"></label>
+                            <input asp-for="ReleaseYear" class="form-control" placeholder="Np. 2023" />
+                            <span asp-validation-for="ReleaseYear" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="IdReżyser" class="form-label fw-bold">Reżyser</label>
+                            <select asp-for="IdReżyser" class="form-select" asp-items="Model.ReżyserOptions">
+                                <option value="">-- Wybierz reżysera --</option>
+                            </select>
+                            <span asp-validation-for="IdReżyser" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="DurationInMinutes" class="form-label fw-bold"></label>
+                            <input asp-for="DurationInMinutes" class="form-control" placeholder="Czas trwania w minutach" />
+                            <span asp-validation-for="DurationInMinutes" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Gatunki</label>
+                            <select asp-for="WybraneGatunki" class="form-select" multiple="multiple" size="8" asp-items="Model.GatunkiOptions"></select>
+                            <div class="form-text">Przytrzymaj Ctrl (lub Cmd na Macu), aby zaznaczyć wiele opcji.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Obsada</label>
+                            <select asp-for="WybraneAktorzy" class="form-select" multiple="multiple" size="8" asp-items="Model.AktorzyOptions"></select>
+                            <div class="form-text">Przytrzymaj Ctrl (lub Cmd na Macu), aby zaznaczyć wiele opcji.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Plakat" class="form-label fw-bold">Plakat filmu</label>
+                        <input asp-for="Plakat" type="file" class="form-control" accept="image/*" />
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group d-flex justify-content-between align-items-center mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fa-solid fa-arrow-left me-2"></i>Anuluj i wróć
+                        </a>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fa-solid fa-check-circle me-2"></i>Utwórz Film
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

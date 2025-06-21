@@ -1,0 +1,29 @@
+﻿
+@model Firma.Data.Data.Movie.Aktor
+@{
+    ViewData["Title"] = $"Filmy aktora: {@Model.Imie} {@Model.Nazwisko}";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<h3 class="mt-4">Filmografia:</h3>
+<div class="row">
+    @foreach (var film in Model.Filmy)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm">
+                    <img src="@(string.IsNullOrEmpty(film.PosterUrl) ? "/uploads/posters/default-poster.png" : film.PosterUrl)" class="card-img-top" alt="Plakat filmu @film.Title">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm" class="text-decoration-none text-dark">
+                            @film.Title (@film.ReleaseYear)
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>

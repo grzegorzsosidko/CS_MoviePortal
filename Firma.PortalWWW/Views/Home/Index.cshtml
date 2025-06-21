@@ -1,0 +1,70 @@
+﻿@using Firma.PortalWWW.Models.ViewModels
+@using Firma.PortalWWW.Services
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Strona Główna";
+}
+
+@inject IUstawieniaService Ustawienia
+<div class="text-center">
+    <h1 class="display-4">@Ustawienia.GetValue("WelcomeHeadline")</h1>
+    <p>@Ustawienia.GetValue("WelcomeText")</p>
+</div>
+<hr />
+
+@if (Model.WynikiWyszukiwania != null)
+{
+    <h2>Wyniki wyszukiwania dla: "@Model.AktualneWyszukiwanie"</h2>
+    <hr />
+    <div class="row">
+        @if (Model.WynikiWyszukiwania.Any())
+        {
+            @foreach (var film in Model.WynikiWyszukiwania)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                         <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm"><img src="@(string.IsNullOrEmpty(film.PosterUrl) ? "/uploads/posters/default-poster.png" : film.PosterUrl)" class="card-img-top" alt="Plakat"></a>
+                         <div class="card-body"><h5 class="card-title">@film.Title (@film.ReleaseYear)</h5><h6 class="card-subtitle mb-2 text-muted">Reż. @film.Reżyser.Imie @film.Reżyser.Nazwisko</h6></div>
+                         <div class="card-footer text-center"><a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm" class="btn btn-success">Zobacz szczegóły</a></div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nie znaleziono filmów spełniających podane kryteria.</p>
+        }
+    </div>
+}
+else
+{
+    <h2 class="mt-4">Najnowsze filmy</h2>
+    <hr />
+    <div class="row">
+        @foreach (var film in Model.NajnowszeFilmy)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                     <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm"><img src="@(string.IsNullOrEmpty(film.PosterUrl) ? "/uploads/posters/default-poster.png" : film.PosterUrl)" class="card-img-top" alt="Plakat"></a>
+                     <div class="card-body"><h5 class="card-title">@film.Title (@film.ReleaseYear)</h5><h6 class="card-subtitle mb-2 text-muted">Reż. @film.Reżyser.Imie @film.Reżyser.Nazwisko</h6></div>
+                     <div class="card-footer text-center"><a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm" class="btn btn-success">Zobacz szczegóły</a></div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h2 class="mt-4">Najwyżej oceniane</h2>
+    <hr />
+    <div class="row">
+        @foreach (var film in Model.NajlepiejOcenianeFilmy)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                     <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm"><img src="@(string.IsNullOrEmpty(film.PosterUrl) ? "/uploads/posters/default-poster.png" : film.PosterUrl)" class="card-img-top" alt="Plakat"></a>
+                     <div class="card-body"><h5 class="card-title">@film.Title (@film.ReleaseYear)</h5><h6 class="card-subtitle mb-2 text-muted">Reż. @film.Reżyser.Imie @film.Reżyser.Nazwisko</h6></div>
+                     <div class="card-footer text-center"><a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm" class="btn btn-success">Zobacz szczegóły</a></div>
+                </div>
+            </div>
+        }
+    </div>
+}

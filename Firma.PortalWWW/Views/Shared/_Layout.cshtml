@@ -1,0 +1,75 @@
+﻿@using Firma.PortalWWW.Services
+<!DOCTYPE html>
+<html lang="pl" class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoviePortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/portal.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column h-100">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-film me-2"></i>
+                    MoviePortal
+                </a>
+
+                @* Przycisk "hamburgera" dla widoków mobilnych *@
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                @* To jest kontener na wszystkie elementy menu *@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    @* A to jest główna lista menu *@
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Film" asp-action="Index">Przeglądaj Filmy</a>
+                        </li>
+
+                        @await Component.InvokeAsync("GenreNav")
+                    </ul>
+
+                    @* Prawa strona nawigacji (wyszukiwarka i logowanie) pozostaje bez zmian *@
+                    <div class="navbar-nav ms-auto">
+                        <form class="d-flex me-3" asp-controller="Home" asp-action="Index" method="get">
+                            <input class="form-control me-2 form-control-sm" type="search" name="searchString" placeholder="Szukaj filmów..." aria-label="Szukaj" value="@ViewData["CurrentFilter"]">
+                            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+        @inject IUstawieniaService Ustawienia
+    </header>
+
+    <div class="container-fluid bg-light text-dark text-center p-4 mb-4 border-bottom">
+        <p class="lead">@Ustawienia.GetValue("BannerText")</p>
+    </div>
+
+    <div class="container flex-shrink-0">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-dark text-white">
+        @await Component.InvokeAsync("Footer")
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

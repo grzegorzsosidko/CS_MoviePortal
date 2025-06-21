@@ -1,0 +1,22 @@
+﻿@model IEnumerable<IGrouping<Firma.Data.Data.CMS.KategoriaStopki?, Firma.Data.Data.CMS.Strona>>
+
+<div class="container">
+    <div class="row">
+        @foreach (var grupa in Model)
+        {
+            <div class="col-md-4">
+                <h5>@grupa.Key.ToString().Replace("_", " ")</h5>
+                <ul class="list-unstyled">
+                    @foreach (var strona in grupa)
+                    {
+                        <li><a class="text-white-50" asp-controller="Page" asp-action="Index" asp-route-link="@strona.Link">@strona.Tytul</a></li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+    <hr />
+    <div class="text-center">
+        &copy; 2025 - MoviePortal
+    </div>
+</div>

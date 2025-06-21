@@ -1,0 +1,160 @@
+﻿@{
+    // Prosta funkcja pomocnicza do podświetlania aktywnego linku w menu
+    string IsActive(string controller, string action = "Index")
+    {
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        return currentController == controller && currentAction == action ? "active" : "";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel - @ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/intranet.css" asp-append-version="true" />
+
+    <style>
+        #sidebar-wrapper {
+            background: linear-gradient(to bottom, #232526, #414345);
+            transition: margin-left .5s;
+        }
+
+        .sidebar-heading {
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .list-group-item {
+            border: none;
+            transition: background-color 0.3s, color 0.3s, padding-left 0.3s;
+        }
+
+            .list-group-item.active {
+                background-color: #0d6efd;
+                color: #fff;
+                border-left: 5px solid #ffc107;
+            }
+
+            .list-group-item:not(.active):hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                padding-left: 25px;
+            }
+
+        .sidebar-heading-sm {
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-weight: bold;
+        }
+
+        #page-content-wrapper {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="border-end" id="sidebar-wrapper">
+            <div class="sidebar-heading text-white py-4 text-center">
+                <i class="fa-solid fa-film me-2"></i> MoviePortal
+            </div>
+            <div class="list-group list-group-flush">
+                <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Home")">
+                    <i class="fa-solid fa-gauge-high fa-fw me-2"></i> Pulpit
+                </a>
+
+                <div class="sidebar-heading-sm text-white-50 pt-3 pb-2 px-3 small">Zarządzanie Treścią</div>
+                <a asp-controller="Film" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Film")">
+                    <i class="fa-solid fa-clapperboard fa-fw me-2"></i> Filmy
+                </a>
+                <a asp-controller="Gatunek" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Gatunek")">
+                    <i class="fa-solid fa-tags fa-fw me-2"></i> Gatunki
+                </a>
+                <a asp-controller="Aktor" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Aktor")">
+                    <i class="fa-solid fa-users fa-fw me-2"></i> Aktorzy
+                </a>
+                <a asp-controller="Reżyser" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Reżyser")">
+                    <i class="fa-solid fa-user-tie fa-fw me-2"></i> Reżyserzy
+                </a>
+
+                <div class="sidebar-heading-sm text-white-50 pt-3 pb-2 px-3 small">System CMS</div>
+                <a asp-controller="Strona" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Strona")">
+                    <i class="fa-solid fa-file-lines fa-fw me-2"></i> Strony
+                </a>
+                <a asp-controller="User" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("User")">
+                    <i class="fa-solid fa-users-gear fa-fw me-2"></i> Użytkownicy
+                </a>
+                <!-- POPRAWKA: Zmiana nazwy kontrolera na liczbę mnogą "Ustawienia" -->
+                <a asp-controller="Ustawienia" asp-action="Index" class="list-group-item list-group-item-action bg-transparent text-white p-3 @IsActive("Ustawienia")">
+                    <i class="fa-solid fa-cogs fa-fw me-2"></i> Ustawienia
+                </a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+                <div class="container-fluid">
+                    <button class="btn btn-outline-primary" id="menu-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/" target="_blank">
+                                    <i class="fa-solid fa-globe me-1"></i> Zobacz portal
+                                </a>
+                            </li>
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                        <i class="fa-solid fa-user-circle me-1"></i> @User.Identity.Name
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- Zakładam, że masz kontroler Account i akcję Logout -->
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item"><i class="fa-solid fa-right-from-bracket fa-fw me-2"></i>Wyloguj</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="container-fluid p-4">
+                @RenderBody()
+            </main>
+
+            <footer class="border-top footer text-muted bg-white">
+                <div class="container-fluid text-center py-3">
+                    &copy; @DateTime.Now.Year - MoviePortal Admin Panel
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/intranet.js" asp-append-version="true"></script>
+
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

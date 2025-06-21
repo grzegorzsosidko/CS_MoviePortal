@@ -1,0 +1,46 @@
+﻿@* Views/User/MojeUlubione.cshtml *@
+@model IEnumerable<Firma.Data.Data.Ulubione.UlubionyFilm>
+
+@{
+    ViewData["Title"] = "Moje ulubione filmy";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var ulubiony in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <a asp-controller="Film" asp-action="Details" asp-route-id="@ulubiony.Film.IdFilm">
+                        @if (!string.IsNullOrEmpty(ulubiony.Film.PosterUrl)) 
+                        {
+                            <img src="@ulubiony.Film.PosterUrl" class="card-img-top" alt="Plakat filmu @ulubiony.Film.Title">
+                        }
+                        else
+                        {
+                            <img src="https://via.placeholder.com/300x450.png?text=Brak+plakatu" class="card-img-top" alt="Brak plakatu">
+                        }
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a asp-controller="Film" asp-action="Details" asp-route-id="@ulubiony.Film.IdFilm">
+                                @ulubiony.Film.Title
+                            </a>
+                        </h5>
+                        <p class="card-text">
+                            <small class="text-muted">Dodano do ulubionych: @ulubiony.DataDodania.ToShortDateString()</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+}
+else
+{
+    <p>Nie masz jeszcze żadnych filmów na swojej liście ulubionych.</p>
+}

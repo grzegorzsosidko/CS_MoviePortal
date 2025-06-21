@@ -1,0 +1,187 @@
+﻿@model Firma.Data.Data.Movie.Film
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1>@Model.Title <small class="text-muted">(@Model.ReleaseYear)</small></h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.PosterUrl))
+        {
+            <img src="@Model.PosterUrl" class="img-fluid rounded" alt="Plakat filmu @Model.Title">
+        }
+        else
+        {
+            <img src="/uploads/posters/default-poster.png" class="img-fluid rounded" alt="Brak plakatu">
+        }
+    </div>
+
+    <div class="col-md-8">
+        <h4>Reżyseria: <a asp-controller="Reżyser" asp-action="Details" asp-route-id="@Model.IdReżyser">@Model.Reżyser.Imie @Model.Reżyser.Nazwisko</a></h4>
+        <p><strong>Czas trwania:</strong> @Model.DurationInMinutes min.</p>
+
+        <p>
+            <strong>Gatunki:</strong>
+            @foreach (var gatunek in Model.Gatunki)
+            {
+                <a asp-controller="Film" asp-action="Index" asp-route-genreId="@gatunek.IdGatunek" class="text-decoration-none">
+                    <span class="badge bg-primary me-1">@gatunek.Name</span>
+                </a>
+            }
+        </p>
+
+        @* Ten przycisk będzie widoczny tylko dla zalogowanych użytkowników *@
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            @* Token jest potrzebny do zabezpieczenia zapytania POST w JavaScripcie *@
+            @Html.AntiForgeryToken()
+
+            <div class="mt-4">
+                <button id="favoriteButton" class="btn @(ViewBag.IsFavorite ? "btn-danger" : "btn-primary")" data-filmid="@Model.IdFilm">
+                    @if ((bool)ViewBag.IsFavorite)
+                    {
+                        <i class="bi bi-heart-fill"></i> <span>W ulubionych</span>
+                    }
+                    else
+                    {
+                        <i class="bi bi-heart"></i> <span>Dodaj do ulubionych</span>
+                    }
+                </button>
+            </div>
+        }
+
+        <h5 class="mt-4">Opis</h5>
+        <p>@Model.Description</p>
+
+        <h5 class="mt-4">Obsada</h5>
+        <div class="d-flex flex-wrap">
+            @foreach (var aktor in Model.Aktorzy)
+            {
+                <div class="text-center me-3 mb-2">
+                    @if (!string.IsNullOrEmpty(aktor.ZdjecieUrl))
+                    {
+                        <img src="@aktor.ZdjecieUrl" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;" alt="@aktor.Imie @aktor.Nazwisko">
+                    }
+                    <div class="small"><a asp-controller="Aktor" asp-action="Details" asp-route-id="@aktor.IdAktor">@aktor.Imie @aktor.Nazwisko</a></div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>Recenzje</h3>
+        <hr />
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <h4>Dodaj własną recenzję</h4>
+            <form asp-controller="Recenzja" asp-action="Add" method="post">
+                <input type="hidden" name="IdFilm" value="@Model.IdFilm" />
+                <div class="mb-3">
+                    <label for="Ocena" class="form-label">Twoja ocena (1-10):</label>
+                    <select name="Ocena" class="form-select" style="max-width: 100px;">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Tresc" class="form-label">Treść recenzji:</label>
+                    <textarea name="Tresc" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Dodaj recenzję</button>
+            </form>
+            <hr />
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Zaloguj się</a>, aby dodać recenzję.
+            </div>
+        }
+
+
+        @foreach (var recenzja in Model.Recenzje.OrderByDescending(r => r.DataDodania))
+        {
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between">
+                    <span>
+                        <strong>Użytkownik:</strong> @recenzja.User.Name
+                    </span>
+                    <span>
+                        <strong>Ocena:</strong> <span class="badge bg-success">@recenzja.Ocena/10</span>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@recenzja.Tresc</p>
+                </div>
+                <div class="card-footer text-muted">
+                    Dodano: @recenzja.DataDodania.ToString("dd.MM.yyyy HH:mm")
+                </div>
+            </div>
+        }
+        @if (!Model.Recenzje.Any())
+        {
+            <p>Ten film nie ma jeszcze żadnych recenzji. Bądź pierwszy!</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Czekam, aż cała strona się załaduje, zanim zacznę działać
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Znajduję w dokumencie mój przycisk po jego ID
+            const favoriteButton = document.getElementById('favoriteButton');
+
+            // Jeśli przycisk istnieje (czyli użytkownik jest zalogowany), dodaję do niego nasłuchiwanie na kliknięcie
+            if (favoriteButton) {
+                favoriteButton.addEventListener('click', function () {
+
+                    // Pobieram ID filmu, które wcześniej zapisałem w atrybucie 'data-filmid'
+                    const filmId = this.dataset.filmid;
+
+                    // Pobieram token anty-fałszerski z ukrytego pola, które dodałem wyżej
+                    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+                    // Wysyłam asynchroniczne zapytanie POST do mojej akcji w kontrolerze
+                    fetch('/Film/PrzelaczUlubione', {
+                        method: 'POST',
+                        headers: {
+                            // Dołączam token do nagłówka zapytania - to bardzo ważne dla bezpieczeństwa!
+                            'RequestVerificationToken': token,
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        // W ciele zapytania wysyłam ID filmu
+                        body: 'idFilmu=' + filmId
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Kiedy otrzymam odpowiedź z serwera...
+                        if (data.success) {
+                            // ...sprawdzam, jaki jest nowy status polubienia (true lub false)
+                            if (data.isFavorite) {
+                                // Zmieniam wygląd i tekst przycisku na "W ulubionych"
+                                this.classList.remove('btn-primary');
+                                this.classList.add('btn-danger');
+                                this.innerHTML = '<i class="bi bi-heart-fill"></i> <span>W ulubionych</span>';
+                            } else {
+                                // Zmieniam wygląd i tekst przycisku na "Dodaj do ulubionych"
+                                this.classList.remove('btn-danger');
+                                this.classList.add('btn-primary');
+                                this.innerHTML = '<i class="bi bi-heart"></i> <span>Dodaj do ulubionych</span>';
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Wystąpił błąd podczas przełączania ulubionych:', error));
+                });
+            }
+        });
+    </script>
+}

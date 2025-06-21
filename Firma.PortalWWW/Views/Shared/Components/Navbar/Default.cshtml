@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Firma.Data.Data.CMS.Strona>
+
+@foreach (var strona in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Page" asp-action="Index" asp-route-link="@strona.Link">@strona.Tytul</a>
+    </li>
+}

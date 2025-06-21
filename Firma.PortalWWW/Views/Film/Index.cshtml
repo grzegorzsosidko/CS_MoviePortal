@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Firma.Data.Data.Movie.Film>
+@{
+    // Tytuł strony jest teraz dynamiczny, ustawiany w kontrolerze
+    ViewData["Title"] = ViewData["Title"] ?? "Wszystkie filmy";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+<p>Lista filmów spełniających Twoje kryteria.</p>
+<p class="text-muted">
+    Sortuj według:
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParm"]">Tytułu</a> |
+    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Daty wydania</a>
+</p>
+<hr />
+
+<div class="row">
+    @foreach (var film in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                <img src="@(string.IsNullOrEmpty(film.PosterUrl) ? "/uploads/posters/default-poster.png" : film.PosterUrl)" class="card-img-top" alt="Plakat filmu @film.Title">
+                <div class="card-body">
+                    <h5 class="card-title">@film.Title (@film.ReleaseYear)</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Reż. @film.Reżyser.Imie @film.Reżyser.Nazwisko</h6>
+                    <p class="card-text">
+                        @foreach (var gatunek in film.Gatunki)
+                        {
+                            <span class="badge bg-primary me-1">@gatunek.Name</span>
+                        }
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-controller="Film" asp-action="Details" asp-route-id="@film.IdFilm" class="btn btn-success">Zobacz szczegóły</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

@@ -1,0 +1,107 @@
+﻿@model Firma.Intranet.Models.ViewModels.FilmViewModel
+
+@{
+    ViewData["Title"] = "Edycja Filmu";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0"><i class="fa-solid fa-pen-to-square me-2"></i>@ViewData["Title"]: @Model.Title</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger"></div>
+                    <input type="hidden" asp-for="IdFilm" />
+                    <input type="hidden" asp-for="PosterUrl" />
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4 class="mb-3 border-bottom pb-2">Dane filmu</h4>
+
+                            <div class="mb-3">
+                                <label asp-for="Title" class="form-label fw-bold"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger small"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label fw-bold"></label>
+                                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label asp-for="ReleaseYear" class="form-label fw-bold"></label>
+                                    <input asp-for="ReleaseYear" class="form-control" />
+                                    <span asp-validation-for="ReleaseYear" class="text-danger small"></span>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label asp-for="IdReżyser" class="form-label fw-bold">Reżyser</label>
+                                    <select asp-for="IdReżyser" class="form-select" asp-items="Model.ReżyserOptions"></select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label asp-for="DurationInMinutes" class="form-label fw-bold"></label>
+                                    <input asp-for="DurationInMinutes" class="form-control" />
+                                    <span asp-validation-for="DurationInMinutes" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4 class="mb-3 border-bottom pb-2">Aktualny Plakat</h4>
+                            <div class="text-center">
+                                @if (!string.IsNullOrEmpty(Model.PosterUrl))
+                                {
+                                    <img src="@Model.PosterUrl" class="img-fluid rounded shadow-sm" style="max-height: 300px;" alt="Aktualny plakat" />
+                                }
+                                else
+                                {
+                                    <div class="d-flex align-items-center justify-content-center bg-light rounded" style="height: 300px;">
+                                        <i class="fa-solid fa-photo-film text-muted" style="font-size: 5rem;"></i>
+                                    </div>
+                                    <p class="text-muted small mt-2">Brak plakatu</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <h4 class="mb-3 border-bottom pb-2">Powiązania</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Gatunki</label>
+                            <select asp-for="WybraneGatunki" class="form-select" multiple="multiple" size="8" asp-items="Model.GatunkiOptions"></select>
+                            <div class="form-text">Przytrzymaj Ctrl (lub Cmd na Macu), aby zaznaczyć wiele opcji.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Obsada</label>
+                            <select asp-for="WybraneAktorzy" class="form-select" multiple="multiple" size="8" asp-items="Model.AktorzyOptions"></select>
+                            <div class="form-text">Przytrzymaj Ctrl (lub Cmd na Macu), aby zaznaczyć wiele opcji.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Plakat" class="form-label fw-bold">Zmień plakat</label>
+                        <input asp-for="Plakat" type="file" class="form-control" accept="image/*" />
+                        <div class="form-text">Wybierz nowy plakat tylko jeśli chcesz go zaktualizować.</div>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between align-items-center mt-4">
+                        <a asp-action="Index" class="btn btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i>Anuluj i wróć</a>
+                        <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-save me-2"></i>Zapisz zmiany</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

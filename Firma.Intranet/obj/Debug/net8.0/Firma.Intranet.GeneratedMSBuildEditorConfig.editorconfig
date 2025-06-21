@@ -1,0 +1,161 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Firma.Intranet
+build_property.RootNamespace = Firma.Intranet
+build_property.ProjectDir = C:\laragon_projects\CS_MoviePortal-main\Firma.Intranet\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\laragon_projects\CS_MoviePortal-main\Firma.Intranet
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Aktor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWt0b3JcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Aktor/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWt0b3JcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Aktor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWt0b3JcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Aktor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWt0b3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Film/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Film/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Film/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Film/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Gatunek/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2F0dW5la1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Gatunek/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2F0dW5la1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Gatunek/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2F0dW5la1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Gatunek/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2F0dW5la1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Reżyser/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmXFvHlzZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Reżyser/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmXFvHlzZXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Reżyser/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmXFvHlzZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Reżyser/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmXFvHlzZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Shared/_LayoutSimple.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRTaW1wbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Strona/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3Ryb25hXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Strona/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3Ryb25hXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Strona/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3Ryb25hXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Strona/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3Ryb25hXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Ustawienia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN0YXdpZW5pYVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Ustawienia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN0YXdpZW5pYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon_projects/CS_MoviePortal-main/Firma.Intranet/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-uwhjvo0k00

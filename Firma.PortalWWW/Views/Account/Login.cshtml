@@ -1,0 +1,52 @@
+﻿@model Firma.PortalWWW.Models.Account.LoginViewModel
+@{
+    ViewData["Title"] = "Logowanie";
+    Layout = "~/Views/Shared/_LayoutSimple.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Użyj lokalnego konta, aby się zalogować.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check mb-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Zaloguj się</button>
+                </div>
+
+                <div class="form-group mt-3">
+                    <p>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Zarejestruj się jako nowy użytkownik</a>
+                    </p>
+                    <p>
+                        <a href="#">Nie pamiętasz hasła?</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,10 @@
+﻿@model Firma.Data.Data.CMS.Strona
+@{
+    ViewData["Title"] = Model.Tytul;
+}
+
+<h1>@Model.Tytul</h1>
+<hr />
+<div>
+    @Html.Raw(Model.Tresc)
+</div>

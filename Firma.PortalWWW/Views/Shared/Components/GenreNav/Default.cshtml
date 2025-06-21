@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Firma.Data.Data.Movie.Gatunek>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Gatunki
+    </a>
+    <ul class="dropdown-menu">
+        @foreach (var gatunek in Model)
+        {
+            <li><a class="dropdown-item" asp-controller="Film" asp-action="Index" asp-route-genreId="@gatunek.IdGatunek">@gatunek.Name</a></li>
+        }
+    </ul>
+</li>

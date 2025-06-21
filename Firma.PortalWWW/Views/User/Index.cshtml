@@ -1,0 +1,40 @@
+﻿@model Firma.Data.Data.Customers.User
+@{
+    ViewData["Title"] = "Moje konto";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<h4>Twoje dane</h4>
+<dl class="row">
+    <dt class="col-sm-2">Nazwa:</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+    <dt class="col-sm-2">Email:</dt>
+    <dd class="col-sm-10">@Model.Email</dd>
+    <dt class="col-sm-2">Telefon:</dt>
+    <dd class="col-sm-10">@Model.Phone</dd>
+</dl>
+<h4 class="mt-4">Twoje recenzje (@Model.Recenzje.Count)</h4>
+<hr />
+<div class="list-group">
+    @foreach (var recenzja in Model.Recenzje.OrderByDescending(r => r.DataDodania))
+    {
+        <div class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">
+                    <a asp-controller="Film" asp-action="Details" asp-route-id="@recenzja.IdFilm">
+                        @recenzja.Film.Title
+                    </a>
+                </h5>
+                <small>Ocena: <span class="badge bg-success">@recenzja.Ocena/10</span></small>
+            </div>
+            <p class="mb-1">@recenzja.Tresc</p>
+            <small>Dodano: @recenzja.DataDodania.ToShortDateString()</small>
+        </div>
+    }
+    @if (!Model.Recenzje.Any())
+    {
+        <p>Nie dodałeś jeszcze żadnej recenzji.</p>
+    }
+</div>

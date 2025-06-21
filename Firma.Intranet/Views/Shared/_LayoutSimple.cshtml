@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoviePortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/intranet.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f4f7f6;
+            background-image: linear-gradient(to right, #f4f7f6 0%, #accbee 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7 col-sm-10">
+
+                    <div class="text-center my-4">
+                        <i class="fa-solid fa-film fa-3x text-primary"></i>
+                        <h2 class="mt-2">MoviePortal</h2>
+                    </div>
+
+                    <div class="card shadow-lg border-0 rounded-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="text-center font-weight-light my-3">@ViewData["Title"]</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            @RenderBody()
+                        </div>
+                        <div class="card-footer text-center py-3">
+                            <div class="small">Panel Administracyjny MoviePortal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/intranet.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
