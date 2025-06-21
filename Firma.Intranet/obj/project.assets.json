@@ -8623,39 +8623,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\grzeg\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\grzeg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\laragon_projects\\CS_MoviePortal-main\\Firma.Intranet\\Firma.Intranet.csproj",
+      "projectUniqueName": "C:\\laragon_projects\\CS_MoviePortal\\Firma.Intranet\\Firma.Intranet.csproj",
       "projectName": "Firma.Intranet",
-      "projectPath": "C:\\laragon_projects\\CS_MoviePortal-main\\Firma.Intranet\\Firma.Intranet.csproj",
+      "projectPath": "C:\\laragon_projects\\CS_MoviePortal\\Firma.Intranet\\Firma.Intranet.csproj",
       "packagesPath": "C:\\Users\\grzeg\\.nuget\\packages\\",
-      "outputPath": "C:\\laragon_projects\\CS_MoviePortal-main\\Firma.Intranet\\obj\\",
+      "outputPath": "C:\\laragon_projects\\CS_MoviePortal\\Firma.Intranet\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\grzeg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\grzeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\laragon_projects\\CS_MoviePortal-main\\Firma.Data\\Firma.Data.csproj": {
-              "projectPath": "C:\\laragon_projects\\CS_MoviePortal-main\\Firma.Data\\Firma.Data.csproj"
+            "C:\\laragon_projects\\CS_MoviePortal\\Firma.Data\\Firma.Data.csproj": {
+              "projectPath": "C:\\laragon_projects\\CS_MoviePortal\\Firma.Data\\Firma.Data.csproj"
             }
           }
         }
@@ -8669,8 +8662,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.300"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -8722,7 +8714,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
